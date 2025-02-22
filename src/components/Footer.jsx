@@ -1,4 +1,6 @@
-const Footer = () => {
+import React from "react";
+
+const Footer = ({ scrollToProjects }) => {
   return (
     <footer className="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-16">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6">
@@ -7,13 +9,20 @@ const Footer = () => {
           <p className="text-sm">Support the future.</p>
         </div>
         <div className="flex flex-col gap-2">
-          <a href="#" className="hover:underline">
+          <a href="#hero" className="hover:underline">
             Home
           </a>
-          <a href="#" className="hover:underline">
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToProjects();
+            }}
+            className="hover:underline"
+          >
             Projects
           </a>
-          <a href="#" className="hover:underline">
+          <a href="#contact" className="hover:underline">
             Contact
           </a>
         </div>
