@@ -13,63 +13,74 @@ const Hero = () => {
 
     tl.fromTo(
       heroImageRef.current,
-      { x: 150, opacity: 0 },
+      { x: 100, opacity: 0 },
       { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
     )
       .fromTo(
         heroRightRef.current,
-        { x: 150, opacity: 0 },
+        { x: 100, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
         "-=0.3"
       )
       .fromTo(
         headingRef.current,
-        { opacity: 0, x: 50 },
+        { opacity: 0, x: 30 },
         { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" },
         "+=0.1"
       )
       .fromTo(
         paragraphRef.current,
-        { opacity: 0, x: 50 },
+        { opacity: 0, x: 30 },
         { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" },
         "+=0.1"
       )
       .fromTo(
         buttonRef.current,
-        { opacity: 0, scale: 0.8, x: 30 },
+        { opacity: 0, scale: 0.8, x: 20 },
         { opacity: 1, scale: 1, x: 0, duration: 0.2, ease: "back.out(1.7)" },
         "+=0.1"
       );
   }, []);
 
   return (
-    <section id="Hero" className="h-[83vh] bg-cover bg-center relative flex">
-      <div id="hero-left" className="min-w-[50%] pl-[100px]">
+    <section
+      id="Hero"
+      className="bg-cover bg-center flex flex-col md:flex-row pt-14 sm:pt-16 md:pt-20 lg:pt-[44px] px-4 sm:px-6 md:px-10 lg:px-16 min-h-[100vh] pb-6"
+    >
+      <div
+        ref={heroImageRef}
+        id="hero-left"
+        className="w-full pt-4 md:w-1/2 flex justify-center md:justify-start mb-6 md:mb-0"
+      >
         <img
-          ref={heroImageRef}
           src="background1.png"
-          className="h-[83vh]"
-          alt=""
+          className="w-full max-w-md md:max-w-full lg-h-[70vh] h-auto object-cover"
+          alt="Hero Background"
         />
       </div>
+
       <div
+        id="hero-right"
         ref={heroRightRef}
-        className="w-[50%] flex justify-center flex-col pl-10 pb-20 opacity-100"
+        className="w-full md:w-1/2 flex flex-col justify-center items-center text-center"
       >
         <h1
           ref={headingRef}
-          className="text-[50px] font-bold text-[#8A6B7D] uppercase w-[45vw] leading-normal mb-5"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase leading-tight mb-4 md:mb-6 px-4"
         >
           The Best Ideas Start with You Make Them Happen!
         </h1>
-        <p ref={paragraphRef} className="w-[30vw] text-[#8A6B7D] text-md">
+        <p
+          ref={paragraphRef}
+          className="text-sm sm:text-base md:text-lg lg:text-xl text-black mb-6 md:mb-8 max-w-lg px-4"
+        >
           From passion projects to life-changing ventures, fund what matters
           most—whether it’s personal causes, creative ideas, or equity-based
           growth. Support, invest, and get rewarded while making an impact!
         </p>
         <button
           ref={buttonRef}
-          className="bg-[#FFD37A] w-[15vw] h-10 rounded-3xl mt-8 text-[#8A6B7D] font-semibold"
+          className="bg-[#FFD37A] w-40 sm:w-48 md:w-56 h-12 rounded-full text-sm md:text-base font-semibold hover:bg-[#ffca5a] transition"
         >
           Get Started
         </button>
