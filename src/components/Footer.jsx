@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = ({ scrollToProjects }) => {
+const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-16">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6">

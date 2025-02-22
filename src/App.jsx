@@ -6,12 +6,7 @@ import Footer from "./components/Footer";
 import LoginSignup from "./components/LoginSignup";
 
 const App = () => {
-  const projectsRef = useRef(null);
   const [isLoginSignupOpen, setIsLoginSignupOpen] = useState(false);
-
-  const scrollToProjects = () => {
-    projectsRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const openLoginSignup = () => {
     setIsLoginSignupOpen(true);
@@ -25,8 +20,8 @@ const App = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar openLoginSignup={openLoginSignup} />
       <Hero />
-      <Projects ref={projectsRef} />
-      <Footer scrollToProjects={scrollToProjects} />
+      <Projects />
+      <Footer />
       <LoginSignup isOpen={isLoginSignupOpen} onClose={closeLoginSignup} />
     </div>
   );
