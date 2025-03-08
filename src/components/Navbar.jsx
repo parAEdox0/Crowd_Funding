@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaUserCircle } from "react-icons/fa"; // Profile icon
 
-const Navbar = ({ openLoginSignup }) => {
+const Navbar = ({ openLoginSignup, user, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -21,20 +22,43 @@ const Navbar = ({ openLoginSignup }) => {
           className="border-none outline-none w-full bg-zinc-200 text-xs md:text-sm lg:text-sm xl:text-base"
         />
       </div>
+
+      {/* Desktop View */}
       <div className="hidden md:flex items-center gap-2 lg:gap-4">
-        <button
-          onClick={openLoginSignup}
-          className="h-10 px-3 lg:px-4 text-sm lg:text-base font-semibold border border-gray-400 rounded-md hover:bg-gray-100 transition"
-        >
-          Continue as Creator
-        </button>
-        <button
-          onClick={openLoginSignup}
-          className="h-10 px-3 lg:px-4 text-sm lg:text-base font-semibold bg-[#FFD37A] rounded-md hover:bg-[#ffca5a] transition"
-        >
-          Continue as Backer
-        </button>
+        {user ? (
+          <>
+            <div className="flex items-center gap-2">
+              <FaUserCircle className="text-2xl text-gray-600" />
+              <span className="text-sm lg:text-base font-medium">
+                Hello, {user.name}
+              </span>
+            </div>
+            <button
+              onClick={onLogout}
+              className="h-10 px-3 lg:px-4 text-sm lg:text-base font-semibold border border-gray-400 rounded-md hover:bg-gray-100 transition"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={openLoginSignup}
+              className="h-10 px-3 lg:px-4 text-sm lg:text-base font-semibold border border-gray-400 rounded-md hover:bg-gray-100 transition"
+            >
+              Login
+            </button>
+            <button
+              onClick={openLoginSignup}
+              className="h-10 px-3 lg:px-4 text-sm lg:text-base font-semibold bg-[#FFD37A] rounded-md hover:bg-[#ffca5a] transition"
+            >
+              Register
+            </button>
+          </>
+        )}
       </div>
+
+      {/* Mobile Hamburger */}
       <button
         className="text-xl md:hidden text-zinc-600"
         onClick={() => setIsOpen(!isOpen)}
@@ -42,26 +66,47 @@ const Navbar = ({ openLoginSignup }) => {
         {isOpen ? <AiOutlineClose /> : <RxHamburgerMenu />}
       </button>
 
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="absolute top-full left-0 w-full bg-white shadow-lg py-4 px-4 flex flex-col gap-3 md:hidden">
-          <button
-            onClick={() => {
-              openLoginSignup();
-              setIsOpen(false);
-            }}
-            className="h-10 px-4 text-sm font-semibold border border-gray-400 rounded-md hover:bg-gray-100 transition"
-          >
-            Continue as Creator
-          </button>
-          <button
-            onClick={() => {
-              openLoginSignup();
-              setIsOpen(false);
-            }}
-            className="h-10 px-4 text-sm font-semibold bg-[#FFD37A] rounded-md hover:bg-[#ffca5a] transition"
-          >
-            Continue as Backer
-          </button>
+          {user ? (
+            <>
+              <div className="flex items-center gap-2">
+                <FaUserCircle className="text-2xl text-gray-600" />
+                <span className="text-sm font-medium">Hello, {user.name}</span>
+              </div>
+              <button
+                onClick={() => {
+                  onLogout();
+                  setIsOpen(false);
+                }}
+                className="h-10 px-4 text-sm font-semibold border border-gray-400 rounded-md hover:bg-gray-100 transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => {
+                  openLoginSignup();
+                  setIsOpen(false);
+                }}
+                className="h-10 px-4 text-sm font-semibold border border-gray-400 rounded-md hover:bg-gray-100 transition"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => {
+                  openLoginSignup();
+                  setIsOpen(false);
+                }}
+                className="h-10 px-4 text-sm font-semibold bg-[#FFD37A] rounded-md hover:bg-[#ffca5a] transition"
+              >
+                Register
+              </button>
+            </>
+          )}
         </div>
       )}
     </nav>
