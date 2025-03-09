@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -9,19 +10,12 @@ const Footer = () => {
           <p className="text-sm">Support the future.</p>
         </div>
         <div className="flex flex-col gap-2">
-          <a href="#hero" className="hover:underline">
+          <Link to="/" className="hover:underline">
             Home
-          </a>
-          <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToProjects();
-            }}
-            className="hover:underline"
-          >
+          </Link>
+          <Link to="/explore-projects" className="hover:underline">
             Projects
-          </a>
+          </Link>
           <a href="#contact" className="hover:underline">
             Contact
           </a>
